@@ -4,7 +4,7 @@
 	<title>Login V1</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
@@ -22,12 +22,12 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				
-				<form class='login100-form '>
+
+				<form class='login100-form ' id="forms">
 					<span class="login100-form-title">
 						Email
 					</span>
@@ -43,21 +43,20 @@
 							  <label for="exampleFormControlTextarea1">Content</label>
 							  <textarea id='email_body' class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
 							</div>
-						
-							<button class='login100-form-btn' type="submit" class="btn btn-primary">Submit</button>
-
+							<a id="sub"> Submit </a>
+							<!-- <button class='login100-form-btn' class="btn btn-primary" id="sub">Submit</button> -->
 				</form>
-					
+
 
 			</div>
-			
+
 		</div>
 	</div>
-	
-	
 
-	
-<!--===============================================================================================-->	
+
+
+
+<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/bootstrap/js/popper.js"></script>
@@ -70,6 +69,34 @@
 		$('.js-tilt').tilt({
 			scale: 1.1
 		})
+	</script>
+	<script >
+	{
+
+		// document.getElementById("sub").onclick=>{
+		//
+		// }
+		document.getElementById("sub").addEventListener("click", function () {
+			// var formData = JSON.stringify($("#forms").serializeArray());
+			var formData={
+				email: document.getElementById("email_addr").value,
+				content: document.getElementById("email_body").value,
+				subject: document.getElementById("subject").value
+			}
+			formData = JSON.stringify(formData)
+			console.log(formData);
+
+			$.ajax({
+				type: "POST",
+				url: "http://localhost:3000/mail",
+				data: formData,
+				success: function(){},
+				dataType: "json",
+				contentType : "application/json"
+			});
+		});
+
+	}
 	</script>
 <!--===============================================================================================-->
 	<script src="js/login_main.js"></script>

@@ -1,12 +1,9 @@
 const sendEmail = require('./sendEmail');
 
-function sendLink(host, emailId, verificationLink, callback) {
+function sendLink(host, emailId, message, callback) {
 	let link = "";
-	let message = {
-		subject : "Congratulations! You have been selected to volunteer",
-		html : "Hello,<br> Please Click on the link to confirm you attendance.<br><a href=" + link + ">Click here to verify</a>",
-		text: "text"
-	};
+	console.log("revieved");
+	console.log(message, "kkk");
 	sendEmail(emailId, message, null)
 		.then(() => {
 			console.log('resoled and calling callback');
